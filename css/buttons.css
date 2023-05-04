@@ -1,0 +1,88 @@
+/* BOTAO */
+button {
+    cursor: pointer;
+    font-weight: 700;
+    font-family: Helvetica,"sans-serif";
+    transition: all .2s;
+    color:#292f55;
+    padding: 0px 60px;
+    background: #e5fc3b;
+    border-radius: 3%;
+    border: 12px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 2.2rem;
+    animation: pulse 2s infinite;
+
+   }
+   
+   button:hover {
+    color:#ffffff;
+    background: #292f55;
+   }
+   button a {
+    color:#292f55;
+    list-style: none;
+   }
+   
+   button a:hover {
+    color:#ffffff;
+    list-style: none;
+    text-decoration: none;
+   }
+   
+   button > svg {
+    width: 42px;
+    margin-left: 10px;
+    transition: transform .3s ease-in-out;
+   }
+   
+   button:hover svg {
+    transform: translateX(5px);
+   }
+   
+   button:active {
+    transform: scale(0.95);
+   }
+   
+/*  btn 1 */
+/* BOTAO */
+.btn1 {
+    cursor: pointer;
+    font-weight: 600;
+    font-family: Helvetica,"sans-serif";
+    transition: all .2s;
+    color:#292f55;
+    background: #e5fc3b;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+
+   }
+   
+   .btn1:hover {
+    color:#ffffff;
+    background: #292f55;
+   }
+   
+   
+   .btn1:active {
+    transform: scale(0.95);
+   }
+   @media only screen and (max-width : 998px) {
+    .btn1{
+        display: flex;
+        justify-content: center;
+        font-size: 1.2rem;
+        align-items: center;
+    }
+    button {
+        font-size: 1.2rem;
+        border: 4px solid transparent;
+    }
+}

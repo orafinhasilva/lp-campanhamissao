@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <!-- meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- informações da página -->
+  <meta name="author" content="Logitech">
+  <link rel="shortcut icon" type="image/x-icon" href="imgs/fav.ico" />
+  <title>Missão Logitech</title>
+  <link href="http://www.campanhamissao.com.br/" rel="canonical">
+
+  <!-- alterar metas de compartilhamento -->
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Missão Logitech" />
+  <meta property="og:url" content="http://www.campanhamissao.com.br/" />
+  <meta property="og:image" content="imgs/fav.ico" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="350" />
+  <!-- /alterar metas de compartilhamento -->
+
+  <!-- alterar metas de compartilhamento twitter -->
+  <meta name="twitter:title" content="Missão Logitech">
+  <meta name="twitter:site" content="http://www.campanhamissao.com.br/">
+  <meta name="twitter:image" content="imgs/fav.ico">
+  <!-- /alterar metas de compartilhamento twitter -->
+
+  <!--  jQuery lib-->
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+    </script>
+
+  <!-- Bootstrap CSS and JS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" media="screen">
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" type="text/css" href="css/essentials.css">
+  <link rel="stylesheet" type="text/css" href="css/reusable.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,300;0,400;1,200;1,300&family=Be+Vietnam+Pro:wght@100&display=swap');
+  </style>
+
+  <!-- Tag global do site (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KT8ZT035T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-2KT8ZT035T');
+  </script>
+
+</head>
+
+<body>
+  <script>
+    const apiRequester = {
+      environment: 'sandbox',
+      data: null,
+      apiUrls: {
+        sandbox: 'https://doadometro-api-stag.amigosdobem.org/api/campaign-summary?uid=xqcIOMGbhoXJP06kmtt31ABy9rY2',
+        production: 'https://doadometro-api.amigosdobem.org/api/campaign-summary?uid=AQBAbUkcJ2Ru78D3BnxideiSs9H3'
+      },
+
+      getData() {
+        const url = this.apiUrls[this.environment];
+        return fetch(url)
+          .then(r => r.json())
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    };
+
+    const cardUpdater = {
+      async update() {
+        const data = await apiRequester.getData();
+
+        Object.entries(data).forEach(([key, value]) => {
+          const el = document.querySelector(`[data-${key}]`);
+          if (el) el.textContent = value;
+        });
+      }
+    }
+
+    // on page load
+    window.addEventListener('load', async () => {
+      await cardUpdater.update();
+    });
+  </script>
+  <header>
+    <!-- CABEÇALHO DA PÁGINA -->
+
+    <div class="nav">
+      <!-- menu class -->
+      <div class="logo">
+        <!-- logo -->
+        <img src="imgs/logo-missao-logitech.png" alt="Missão Logitech"
+          class="logo-desktop img-fluid animated animatedFadeInUp fadeInUp">
+      </div>
+      <!-- nav desktop -->
+      <div class="links">
+        <a href="#">Início</a>
+        <a href="#doadometro">Doadômetro</a>
+        <a href="#historia">História</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="https://doar.amigosdobem.org/logitech" target="_blank" class="mainlink alert-info">DOE AGORA</a>
+      </div>
+      <!-- nav mobile -->
+      <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+          <span></span>
+        </label>
+
+        <ul class="menu__box">
+          <li><a class="menu__item" href="#">Início</a></li>
+          <li><a class="menu__item" href="#doadometro">Doadômetro</a></li>
+          <li><a class="menu__item" href="#historia">História</a></li>
+          <li><a class="menu__item" href="#galeria">Galeria</a></li>
+          <li><a class="menu__item" href="#parceiros">Parceiros</a></li>
+          <li><a class="menu__item" href="https://doar.amigosdobem.org/logitech" target="_blank">DOE AGORA</a></li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- frase header -->
+    <div class="perfil">
+      <h1 class="mainTitle animated animatedFadeInUp fadeInUp">A felicidade só é real<br>
+        quando compartilhada.</h1>
+    </div>
+    <div class="imgHeader"></div>
+
+  </header>
+
+  <!-- CONTEÚDO DA LANDING PAGE-->
+  <container>
+
+
+    <section class="section01">
+      <h2 class="missao2" id="historia">MISSÃO<br>LOGITECH</h2>
+      <p>A <b>Logitech</b> encontrou uma forma de ultrapassar as barreiras corporativas e engajar o máximo de pessoas a
+        ajudar o próximo,
+        através da Missão Logitech. Essa campanha teve sua primeira edição em 2019,
+        <b>contemplando 11 ONGs</b>, com a doação de 1130 cestas básicas (aproximadamente 32 toneladas de alimentos),
+        incluindo materiais de limpeza e higiene pessoal.
+        <br><br>Para continuarmos levando ALIMENTOS e ajuda para MILHARES DE FAMÍLIAS, precisamos de muitas mãos
+        solidárias, como a sua!
+      </p>
+    </section>
+
+    <div class="boxArrow">
+      <div class="hairline-down-arrow"></div>
+    </div>
+
+    <section class="sectionn" id="doadometro">
+      <div class="box1">
+        <img src="imgs/doadometro.png" class="img1 img-fluid">
+        <img src="imgs/doadometro-mobile.png" class="img1-mobile img-fluid">
+      </div>
+
+      <div class="blockd">
+        <div class="box2">
+
+          <div class="dias">
+            <h1> <span data-remaining_days>-</span> </h1>
+          </div>
+          <div class="arrecadado">
+            <h1>R$ <span data-donations_amount>-</span></h1>
+          </div>
+        </div>
+
+        <div class="botaoo">
+          <button class="btn1">
+            <a href="https://doar.amigosdobem.org/logitech" target="_blank">Também quero fazer parte!</a>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION CONTEÚDO COM IMG LATERAL ESQUERDA-->
+    <section class="grid">
+      <div class="boxposition" <div class="boximg"><img src="imgs/sobrepor.png" class="imgG img-fluid">
+        <!-- IMG DESKTOP-->
+      </div>
+      </div>
+      </div>
+      <div class="box0">
+        <img src="imgs/imagem-4.png" class="imgmobile rounded img-fluid"> <!-- IMG MOBILE-->
+        <div class="textohistoria">
+          <h4 style="color:#ffffff;" class="fontMOBILE text-justify">Ainda hoje, milhares de pessoas vivem em situação
+            de extrema pobreza e fome, muitos no maior foco de miséria do país, o sertão nordestino. Enfrentam
+            diariamente a luta pela sobrevivência e não tem ninguém para estender a mão e oferecer a ajuda necessária.
+            Nesta edição da Missão Logitech, as doações serão destinada a ajudar as famílias e pessoas através da ONG
+            Amigos do Bem, que foi fundada em 1993, com a intenção de promover a transformação de milhares de vidas com
+            projetos de educação, geração de renda e acesso à água, moradia e saúde no sertão.
+          </h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION CONTEÚDO VÍDEO-->
+    <section class="section3">
+      <div class="box flex">
+        <video controls poster="imgs/video-thumb.png">
+
+          <source src="video/missao.mp4" type=video/mp4>
+        </video>
+      </div>
+    </section>
+
+
+    <!-- SECTION GALERIA -->
+    <div class="box flex">
+      <section class="sectionG" id="galeria">
+        <h1 class="missao flex animated animatedFadeInUp fadeInUp" style="color:#3bb5e7;">GALERIA</h1>
+
+        <div class="carousel" <div class="row">
+          <div id="carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carousel" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="d-none d-lg-block">
+                  <div class="slide-box">
+                    <img src="imgs/galeria11.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria8.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria9.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria4.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                  </div>
+                </div>
+                <div class="d-none d-md-block d-lg-none">
+                  <div class="slide-box">
+                    <img src="imgs/galeria11.jpg" alt="Missão Logiteche">
+                    <img src="imgs/galeria8.JPG" alt="Missão Logitech">
+                    <img src="imgs/galeria9.JPG" alt="Missão Logitech">
+                  </div>
+                </div>
+                <div class="d-none d-sm-block d-md-none">
+                  <div class="slide-box">
+                    <img src="imgs/galeria9.JPG" alt="Missão Logitech">
+                    <img src="imgs/galeria10.JPG" alt="Missão Logitech">
+                  </div>
+                </div>
+                <div class="d-block d-sm-none">
+                  <img class="d-block w-100" src="imgs/galeria9.jpg" alt="Missão Logitech">
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-none d-lg-block">
+                  <div class="slide-box">
+                    <img src="imgs/galeria6.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria10.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria6.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria4.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                  </div>
+                </div>
+                <div class="d-none d-md-block d-lg-none">
+                  <div class="slide-box">
+                    <img src="/imgs/galeria8.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria11.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria6.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                    <img src="imgs/galeria4.jpg" alt="Missão Logitech" class="img-thumbnail rounded">
+                  </div>
+                </div>
+                <div class="d-none d-sm-block d-md-none">
+                  <div class="slide-box">
+                    <img class="d-block w-100" src="imgs/galeria2.jpg" alt="Missão Logitech">
+                  </div>
+                </div>
+                <div class="d-block d-sm-none">
+                  <img class="d-block w-100" src="imgs/galeria9.jpg" alt="Missão Logitech">
+                  
+                  </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Voltar</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Proximo</span>
+            </a>
+          </div>
+        </div>
+    </div>
+
+    </section>
+
+    <!-- SECTION LINHA DO TEMPO -->
+    <section class="section0l">
+      <h2 class="missao flex animated animatedFadeInUp fadeInUp" style="color:#292f55 ;">LINHA DO TEMPO</h2>
+      <img src="imgs/timeline.svg" alt="Missão Logitech" class="img-fluid" width="850">
+    </section>
+
+    <!-- SECTION BOTÃO DOE AGORA -->
+    <section class="section3">
+      <div class="box flex">
+        <button>
+          <a href="https://doar.amigosdobem.org/logitech" target="_blank">DOE<br>AGORA</a>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION PARCEIROS -->
+    <section class="section4" id="parceiros">
+      <div class="box">
+        <h1 class="bigTitle flex animated animatedFadeInUp fadeInUp">PARCEIROS</h1>
+        <div id="cardSlide" class="flex">
+          <div id="slider-container">
+            <span onclick="slideRight()" class="btn"></span>
+            <div id="slider">
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/1.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/2.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/3.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/4.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/5.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/6.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/7.png" width="105"></span></div>
+              <div class="slide"><span><img class=" img-fluid rounded-circle" src="imgs/8.png" width="105"></span></div>
+            </div>
+            <span onclick="slideLeft()" class="btn"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </container>
+  <!-- CONTEÚDO FOOTER LP-->
+  </div>
+  <footer class="rodape flex-md-row d-md-flex">
+    <img src="imgs/logitech-logo.png" class="logoEmpresa align-items-lg-center align-content-around" title="Missão Logitech">
+    <span class="text-lg-center">Termos legais | Termo de privacidade | Termo de cookies<br> Copyright © 2022 Logitech |
+      Todos os direitos reservados <br>
+      <span class="text-xl-right">Desenvolvido pela agência: <a href="https://protrademkt.com.br/" title="Protrade"><img
+            src="imgs/logo.svg" width="62" title="Protrade"></img></span>
+  </footer>
+
+  <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
+  <script src="js/card.js"> </script>
+  <script src="js/galeria.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+</body>
+
+</html>
